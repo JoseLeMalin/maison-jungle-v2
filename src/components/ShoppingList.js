@@ -1,4 +1,6 @@
 import plantList from "../datas/plantList.js";
+import PlantItem from "./PlantItem.js";
+import "../styles/ShoppingList.css";
 /**
  *
  * @returns
@@ -26,7 +28,15 @@ function ShoppingList() {
       </ul>
       <ul>
         {plantList.map((plant) => (
-          <li key={plant.id}>{plant.name}</li>
+          <li key={plant.id} className="lmj-plant-item">
+            <PlantItem
+              name={plant.name}
+              cover={plant.cover}
+              id={plant.id}
+              light={plant.light}
+              water={plant.water}
+            />
+          </li>
         ))}
       </ul>
     </div>
