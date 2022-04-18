@@ -1,9 +1,4 @@
 function Categories({ listCateg, categSelected, setCategSelecetd }) {
-  function selectCateg(element) {
-    console.log(element);
-
-    setCategSelecetd(element);
-  }
   return (
     <div>
       <select
@@ -20,7 +15,6 @@ function Categories({ listCateg, categSelected, setCategSelecetd }) {
           </option>
         ))}
       </select>
-      <button type="button">Réinitialiser filtre</button>
     </div>
   );
 }

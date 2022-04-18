@@ -15,6 +15,15 @@ function ShoppingList({ cart, setCart }) {
     []
   );
 
+  let plantlistDisplay;
+  if (categSelected.length) {
+    plantlistDisplay = plantList.filter(
+      (plant) => plant.category === categSelected
+    );
+  } else {
+    plantlistDisplay = plantList;
+  }
+
   return (
     <div>
       <Categories
@@ -22,10 +31,12 @@ function ShoppingList({ cart, setCart }) {
         categSelected={categSelected}
         setCategSelecetd={setCategSelecetd}
       />
-
+      <button type="button" onClick={() => setCategSelecetd([])}>
+        Réinitialiser filtre
+      </button>
       <input type="text" value={categSelected ? categSelected : null} />
       <ul className="lmj-plant-list">
-        {plantList.map((plant) => (
+        {plantlistDisplay.map((plant) => (
           <div key={plant.id} className="lmj-plant-item">
             <PlantItem
               name={plant.name}

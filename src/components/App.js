@@ -8,15 +8,25 @@ import ShoppingList from "./ShoppingList";
 
 function App() {
   const [cart, setCart] = useState([]);
+  const [footerDisplay, setDisplayFooter] = useState(true);
   return (
-    <div>
+    <div className="App">
       <Banner />
       <div className="lmj-layout-inner">
         <Cart cart={cart} setCart={setCart} />
         <ShoppingList cart={cart} setCart={setCart} />
       </div>
       <QuestionForm />
-      <Footer />
+      <div>
+        <button
+          type="button"
+          value={footerDisplay}
+          onClick={() => setDisplayFooter(!footerDisplay)}
+        >
+          {footerDisplay ? "Hide Footer" : "Display Footer"}
+        </button>
+        {footerDisplay && <Footer />}
+      </div>
     </div>
   );
 }

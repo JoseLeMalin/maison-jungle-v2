@@ -1,8 +1,18 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "../styles/Cart.css";
 function Cart({ cart, setCart }) {
   //const [cart, setCart] = useState(0); // Update total price of cart
   const [isOpen, setIsOpen] = useState(false); // Open/Close cart
+
+  const total = cart.reduce(
+    (total, currentPlant) =>
+      (total += currentPlant.price * currentPlant.amount),
+    0
+  );
+
+  useEffect(() => {
+    document.title = total ? (document.title = `Cart: ${total}€`) : "React App";
+  }, [total]);
 
   function displayCart() {
     return cart.map((plant) => {
@@ -12,15 +22,6 @@ function Cart({ cart, setCart }) {
         </li>
       );
     });
-  }
-
-  function displayTotal() {
-    if (!cart.length) return 0;
-    return cart.reduce((total, currentPlant) => {
-      total += currentPlant.price * currentPlant.amount;
-
-      return total;
-    }, 0);
   }
 
   return isOpen ? (
@@ -36,7 +37,7 @@ function Cart({ cart, setCart }) {
       <h2>Panier</h2>
       <ul>{displayCart()}</ul>
 
-      <div>Total : {displayTotal()}€</div>
+      <div>Total : {total}€</div>
       <div>
         <button
           className="lmj-cart-toggle-button"

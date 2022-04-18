@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "../styles/Footer.css";
 
 function Footer() {
@@ -9,7 +9,9 @@ function Footer() {
       alert(`Your email address ${eventText} doesn't contain any '@'`);
     }
   }
-
+  useEffect(() => {
+    console.log(`Déclenché seulement au 1er render`);
+  }, []);
   return (
     <footer className="lmj-footer">
       <div className="lmj-footer-elem">
