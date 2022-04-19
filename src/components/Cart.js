@@ -17,7 +17,7 @@ function Cart({ cart, setCart }) {
   function displayCart() {
     return cart.map((plant) => {
       return (
-        <li>
+        <li key={plant.id}>
           {plant.amount} x {plant.name}: {plant.amount * plant.price}€
         </li>
       );

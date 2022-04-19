@@ -22,9 +22,9 @@ function Footer() {
         <textarea
           name="customerEmail"
           placeholder="email@email.com"
-          value={inputValue}
           onBlur={(e) => checkInputValue(e.target.value)}
-          onchange={(e) => setInputValue(e.target.value)}
+          onChange={(e) => setInputValue(e.target.value)}
+          value={inputValue}
         ></textarea>
       </div>
     </footer>

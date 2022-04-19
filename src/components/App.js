@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "../styles/App.css";
 import Banner from "./Banner";
 import Cart from "./Cart";
@@ -7,8 +7,13 @@ import QuestionForm from "./QuestionForm";
 import ShoppingList from "./ShoppingList";
 
 function App() {
-  const [cart, setCart] = useState([]);
+  const savedCart = localStorage.getItem("cart");
+  const [cart, setCart] = useState(savedCart ? JSON.parse(savedCart) : []);
   const [footerDisplay, setDisplayFooter] = useState(true);
+
+  useEffect(() => {
+    localStorage.setItem("cart", JSON.stringify(cart));
+  }, [cart]);
   return (
     <div className="App">
       <Banner />

@@ -34,7 +34,6 @@ function ShoppingList({ cart, setCart }) {
       <button type="button" onClick={() => setCategSelecetd([])}>
         Réinitialiser filtre
       </button>
-      <input type="text" value={categSelected ? categSelected : null} />
       <ul className="lmj-plant-list">
         {plantlistDisplay.map((plant) => (
           <div key={plant.id} className="lmj-plant-item">
@@ -49,7 +48,7 @@ function ShoppingList({ cart, setCart }) {
               name="addToCart"
               // onClick={() => setCart(cart + 1)}
               onClick={() => {
-                addPlantToCart(plant.name, plant.price);
+                addPlantToCart(plant.name, plant.price, plant.id);
               }}
             >
               Add to cart
@@ -60,7 +59,7 @@ function ShoppingList({ cart, setCart }) {
     </div>
   );
 
-  function addPlantToCart(name, price) {
+  function addPlantToCart(name, price, id) {
     try {
       const currentPlantAdded = cart.find((plant) => plant.name === name);
       let sortedCart;
@@ -73,11 +72,12 @@ function ShoppingList({ cart, setCart }) {
           {
             name,
             price,
+            id,
             amount: currentPlantAdded.amount + 1,
           },
         ];
       } else {
-        sortedCart = [...cart, { name, price, amount: 1 }];
+        sortedCart = [...cart, { name, price, id, amount: 1 }];
       }
       sortedCart.sort((a, b) => a.name.localeCompare(b.name));
       setCart(sortedCart);

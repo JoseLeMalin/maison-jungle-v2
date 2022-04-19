@@ -4,11 +4,12 @@ function Categories({ listCateg, categSelected, setCategSelecetd }) {
       <select
         id="listCateg"
         name="listCategPlants"
-        value={categSelected}
         onChange={(e) => setCategSelecetd(e.target.value)}
+        value={categSelected}
+        multiple={false}
         selected
       >
-        <option id="null" value=""></option>
+        <option key="0" id="null" value=""></option>
         {listCateg.map((cat) => (
           <option key={cat} value={cat}>
             {cat}
