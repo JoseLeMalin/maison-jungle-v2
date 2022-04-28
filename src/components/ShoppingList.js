@@ -8,17 +8,18 @@ import { useState } from "react";
  * @returns
  */
 function ShoppingList({ cart, setCart }) {
-  const [categSelected, setCategSelecetd] = useState([]);
   const listCateg = plantList.reduce(
     (acc, plant) =>
       acc.includes(plant.category) ? acc : acc.concat(plant.category),
     []
   );
+  const [categSelected, setCategSelected] = useState([]);
+  const [categAvailable, setcategAvailable] = useState(listCateg);
 
   let plantlistDisplay;
   if (categSelected.length) {
-    plantlistDisplay = plantList.filter(
-      (plant) => plant.category === categSelected
+    plantlistDisplay = plantList.filter((plant) =>
+      categSelected.includes(plant.category)
     );
   } else {
     plantlistDisplay = plantList;
@@ -26,14 +27,25 @@ function ShoppingList({ cart, setCart }) {
 
   return (
     <div>
-      <Categories
-        listCateg={listCateg}
-        categSelected={categSelected}
-        setCategSelecetd={setCategSelecetd}
-      />
-      <button type="button" onClick={() => setCategSelecetd([])}>
-        Réinitialiser filtre
-      </button>
+      <div>
+        <Categories
+          categAvailable={categAvailable}
+          setcategAvailable={setcategAvailable}
+          categSelected={categSelected}
+          setCategSelected={setCategSelected}
+        />
+        <div>
+          <button
+            type="button"
+            onClick={() => {
+              setCategSelected([]);
+              setcategAvailable(listCateg);
+            }}
+          >
+            Réinitialiser filtre
+          </button>
+        </div>
+      </div>
       <ul className="lmj-plant-list">
         {plantlistDisplay.map((plant) => (
           <div key={plant.id} className="lmj-plant-item">
@@ -46,7 +58,6 @@ function ShoppingList({ cart, setCart }) {
             <button
               type="button"
               name="addToCart"
-              // onClick={() => setCart(cart + 1)}
               onClick={() => {
                 addPlantToCart(plant.name, plant.price, plant.id);
               }}
