@@ -1,3 +1,5 @@
+import TextField from "@mui/material/TextField";
+const ariaLabel = { "aria-label": "description" };
 function Categories({
   categAvailable,
   setcategAvailable,
@@ -8,7 +10,16 @@ function Categories({
     <div>
       {displaySelect()}
       {categSelected.map((categ) => {
-        return <input type="text" value={categ} />;
+        return (
+          <TextField
+            disabled
+            inputProps={ariaLabel}
+            defaultValue={categ}
+            value={categ}
+            size="small"
+            id="filled-hidden-label-small"
+          />
+        );
       })}
     </div>
   );
