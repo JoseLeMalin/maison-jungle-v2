@@ -1,3 +1,4 @@
+import { Button } from "@mui/material";
 import { useEffect, useState } from "react";
 import "../styles/Cart.css";
 function Cart({ cart, setCart }) {
@@ -48,14 +49,14 @@ function Cart({ cart, setCart }) {
   }
   return isOpen ? (
     <div className="lmj-cart">
-      <button
+      <Button
         className="lmj-cart-toggle-button"
         type="button"
         name="HideCart"
         onClick={() => setIsOpen(false)}
       >
         Close cart
-      </button>
+      </Button>
       <h2>Panier</h2>
       <ul>{displayCart()}</ul>
 
@@ -73,9 +74,9 @@ function Cart({ cart, setCart }) {
     </div>
   ) : (
     <div className="lmj-cart-closed">
-      <button type="button" name="HideCart" onClick={() => setIsOpen(true)}>
+      <Button type="button" name="HideCart" onClick={() => setIsOpen(true)}>
         Open cart
-      </button>
+      </Button>
     </div>
   );
 }
