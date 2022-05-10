@@ -3,6 +3,13 @@ import PlantItem from "./PlantItem.js";
 import "../styles/ShoppingList.css";
 import Categories from "./Categories.js";
 import { useState } from "react";
+import Snackbar from "@mui/material/Snackbar";
+import MuiAlert from "@mui/material/Alert";
+import { forwardRef } from "react";
+
+const Alert = forwardRef(function Alert(props, ref) {
+  return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+});
 /**
  *
  * @returns
@@ -15,6 +22,7 @@ function ShoppingList({ cart, setCart }) {
   );
   const [categSelected, setCategSelected] = useState([]);
   const [categAvailable, setcategAvailable] = useState(listCateg);
+  const [openSnackBar, setOpenSnackBar] = useState(false);
 
   let plantlistDisplay;
   if (categSelected.length) {
@@ -25,6 +33,12 @@ function ShoppingList({ cart, setCart }) {
     plantlistDisplay = plantList;
   }
 
+  const handleClick = () => {
+    setOpenSnackBar(true);
+  };
+  const handleCloseSnackbar = () => {
+    setOpenSnackBar(false);
+  };
   return (
     <div>
       <div>
@@ -67,6 +81,20 @@ function ShoppingList({ cart, setCart }) {
           </div>
         ))}
       </ul>
+      <Snackbar
+        open={openSnackBar}
+        autoHideDuration={1000}
+        onClose={handleCloseSnackbar}
+      >
+        <Alert
+          onClose={handleCloseSnackbar}
+          severity="success"
+          sx={{ width: "100%" }}
+        >
+          This is a success message!
+        </Alert>
+      </Snackbar>
+      ;
     </div>
   );
 
@@ -92,6 +120,7 @@ function ShoppingList({ cart, setCart }) {
       }
       sortedCart.sort((a, b) => a.name.localeCompare(b.name));
       setCart(sortedCart);
+      handleClick();
     } catch (error) {
       console.log(error);
     }

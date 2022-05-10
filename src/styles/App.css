@@ -1,6 +1,8 @@
 .App {
   text-align: center;
   background-color: #696f7a;
+  height: 100%;
+  width: 100%;
 }
 
 .App-logo {
@@ -40,4 +42,8 @@
 .lmj-layout-inner {
   display: flex;
   flex-direction: row;
+}
+
+.App-cart {
+  background-color: darkgreen;
 }
