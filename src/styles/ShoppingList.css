@@ -1,19 +1,28 @@
-.lmj-plant-list {
-  list-style-type: none;
-  padding: 32px;
-  display: flex;
-  flex-wrap: wrap;
-  max-width: 800px;
+.sl-content {
+  background-color: #948994;
 }
+.sl-lmj-plant-list {
+  display: flex;
+  flex-flow: row wrap;
+  list-style-type: none;
 
-.lmj-plant-item {
+  justify-content: space-evenly;
+  height: 100%;
+  width: 60%;
+}
+.sl-lmj-plant-list > * {
+  flex: 1 1 40%;
+}
+.sl-lmj-plant-item {
+  display: flex;
+  flex-flow: column wrap;
   border: solid 2px black;
   border-radius: 10px;
-  height: 100%;
-  width: 28%;
   margin: 1%;
-  display: flex;
   align-items: center;
   justify-content: center;
-  flex-direction: column;
+}
+
+.sl-filters {
+  align-content: center;
 }

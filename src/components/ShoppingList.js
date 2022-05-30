@@ -40,29 +40,27 @@ function ShoppingList({ cart, setCart }) {
     setOpenSnackBar(false);
   };
   return (
-    <div>
-      <div>
+    <div className="sl-content">
+      <div class="sl-filters">
         <Categories
           categAvailable={categAvailable}
           setcategAvailable={setcategAvailable}
           categSelected={categSelected}
           setCategSelected={setCategSelected}
         />
-        <div>
-          <button
-            type="button"
-            onClick={() => {
-              setCategSelected([]);
-              setcategAvailable(listCateg);
-            }}
-          >
-            Réinitialiser filtre
-          </button>
-        </div>
+        <button
+          type="button"
+          onClick={() => {
+            setCategSelected([]);
+            setcategAvailable(listCateg);
+          }}
+        >
+          Réinitialiser filtre
+        </button>
       </div>
-      <ul className="lmj-plant-list">
+      <ul className="sl-lmj-plant-list">
         {plantlistDisplay.map((plant) => (
-          <div key={plant.id} className="lmj-plant-item">
+          <div className="sl-lmj-plant-item" key={plant.id}>
             <PlantItem
               name={plant.name}
               cover={plant.cover}

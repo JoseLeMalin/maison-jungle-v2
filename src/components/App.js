@@ -44,7 +44,7 @@ function App() {
         </Box>
       </div>
       <div className="app-body">
-        <div classsName="App-cart" flex>
+        <div classsName="App-cart">
           <Cart
             cart={cart}
             setCart={setCart}
@@ -53,12 +53,12 @@ function App() {
           />
         </div>
         <Main open={cartOpened}>
-          <div classsName="app-content" flex>
+          <div classsName="App-content">
             <Box sx={{ flexGrow: 1 }}>
               <ShoppingList cart={cart} setCart={setCart} />
             </Box>
-            <QuestionForm />
           </div>
+          <QuestionForm />
         </Main>
       </div>
       <div>
