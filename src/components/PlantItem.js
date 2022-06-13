@@ -1,3 +1,4 @@
+import * as React from "react";
 import CareScale from "./CareScale.js";
 import "../styles/PlantItem.css";
 import Button from "@mui/material/Button";

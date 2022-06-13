@@ -1,6 +1,6 @@
 import sun from "../assets/sun.svg";
 import water from "../assets/water.svg";
-
+import * as React from "react";
 function CareScale({ scaleValue, careType }) {
   const scaleType =
     careType === "light" ? (

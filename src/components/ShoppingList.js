@@ -1,3 +1,4 @@
+import * as React from "react";
 import plantList from "../datas/plantList.js";
 import PlantItem from "./PlantItem.js";
 import "../styles/ShoppingList.css";
@@ -58,27 +59,29 @@ function ShoppingList({ cart, setCart }) {
           Réinitialiser filtre
         </button>
       </div>
-      <ul className="sl-lmj-plant-list">
-        {plantlistDisplay.map((plant) => (
-          <div className="sl-lmj-plant-item" key={plant.id}>
-            <PlantItem
-              name={plant.name}
-              cover={plant.cover}
-              light={plant.light}
-              water={plant.water}
-            />
-            <button
-              type="button"
-              name="addToCart"
-              onClick={() => {
-                addPlantToCart(plant.name, plant.price, plant.id);
-              }}
-            >
-              Add to cart
-            </button>
-          </div>
-        ))}
-      </ul>
+      <div className="sl-div-lmj-plant-list">
+        <ul className="sl-lmj-plant-list">
+          {plantlistDisplay.map((plant) => (
+            <div className="sl-lmj-plant-item" key={plant.id}>
+              <PlantItem
+                name={plant.name}
+                cover={plant.cover}
+                light={plant.light}
+                water={plant.water}
+              />
+              <button
+                type="button"
+                name="addToCart"
+                onClick={() => {
+                  addPlantToCart(plant.name, plant.price, plant.id);
+                }}
+              >
+                Add to cart
+              </button>
+            </div>
+          ))}
+        </ul>
+      </div>
       <Snackbar
         open={openSnackBar}
         autoHideDuration={1000}

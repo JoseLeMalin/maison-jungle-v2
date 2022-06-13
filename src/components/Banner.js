@@ -21,7 +21,9 @@ import { useState } from "react";
 import dayjs from "dayjs";
 import { green } from "@mui/material/colors";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
-
+import useScrollTrigger from "@mui/material/useScrollTrigger";
+import PropTypes from "prop-types";
+import CssBaseline from "@mui/material/CssBaseline";
 //function Banner() {
 //  const title = "La maison jungle";
 //  return (
@@ -31,6 +33,18 @@ import { ThemeProvider, createTheme } from "@mui/material/styles";
 //    </div>
 //  );
 //}
+function ElevationScroll(props) {
+  const { children, window } = props;
+  const trigger = useScrollTrigger({
+    disableHysteresis: true,
+    threshold: 0,
+    target: window ? window() : undefined,
+  });
+
+  return React.cloneElement(children, {
+    elevation: trigger ? 10 : 0,
+  });
+}
 
 // export default Banner;
 const Search = styled("div")(({ theme }) => ({
@@ -82,7 +96,7 @@ const darkTheme = createTheme({
   },
 });
 
-export default function Banner({ cartOpened, setCartOpened }) {
+export default function Banner({ cartOpened, setCartOpened }, props) {
   const [anchorEl, setAnchorEl] = useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState(null);
   const dateUpdater = () => {
@@ -92,8 +106,9 @@ export default function Banner({ cartOpened, setCartOpened }) {
     }, 60000);
     return date;
   };
+  console.log(JSON.stringify(props));
   const [dateNow, setDateNow] = useState(dateUpdater());
-
+  console.log(JSON.stringify(props));
   // dateUpdater();
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
@@ -190,108 +205,113 @@ export default function Banner({ cartOpened, setCartOpened }) {
   );
 
   return (
-    <ThemeProvider theme={darkTheme}>
-      <AppBar position="static" backgroundColor={green}>
-        <Toolbar>
-          <IconButton
-            size="large"
-            edge="start"
-            color="inherit"
-            aria-label="open drawer"
-            sx={{ mr: 2 }}
-            onClick={() => {
-              console.log(cartOpened);
-              setCartOpened(!cartOpened);
-            }}
-          >
-            <MenuIcon />
-          </IconButton>
+    <React.Fragment>
+      <CssBaseline />
+      <ElevationScroll {...props}>
+        <ThemeProvider theme={darkTheme}>
+          <AppBar position="fixed" backgroundColor={green}>
+            <Toolbar>
+              <IconButton
+                size="large"
+                edge="start"
+                color="inherit"
+                aria-label="open drawer"
+                sx={{ mr: 2 }}
+                onClick={() => {
+                  console.log(cartOpened);
+                  setCartOpened(!cartOpened);
+                }}
+              >
+                <MenuIcon />
+              </IconButton>
 
-          <Box>
-            <Typography
-              variant="h7"
-              noWrap
-              component="div"
-              sx={{ mr: 2, display: { md: "flex" } }}
-              className="lmj-banner"
-            >
-              <h3>
-                <img
-                  src={leaf}
-                  alt="La Maison Jungle icon"
-                  className="lmj-banner-logo"
-                ></img>
-                La Maison Jungle
-              </h3>
-            </Typography>
-          </Box>
-          <Search>
-            <SearchIconWrapper>
-              <SearchIcon />
-            </SearchIconWrapper>
-            <StyledInputBase
-              placeholder="Search…"
-              inputProps={{ "aria-label": "search" }}
-            />
-          </Search>
-          <Box sx={{ flexGrow: 1 }}>
-            <Typography
-              variant="h6"
-              noWrap
-              component="div"
-              sx={{ display: { xs: "none", sm: "block" } }}
-            >
-              {dateNow}
-              {` ${cartOpened}`}
-            </Typography>
-          </Box>
-          <Box sx={{ display: { xs: "none", md: "flex" } }}>
-            <IconButton
-              size="large"
-              aria-label="show 4 new mails"
-              color="inherit"
-            >
-              <Badge badgeContent={4} color="error">
-                <MailIcon />
-              </Badge>
-            </IconButton>
-            <IconButton
-              size="large"
-              aria-label="show 17 new notifications"
-              color="inherit"
-            >
-              <Badge badgeContent={17} color="error">
-                <NotificationsIcon />
-              </Badge>
-            </IconButton>
-            <IconButton
-              size="large"
-              edge="end"
-              aria-label="account of current user"
-              aria-controls={menuId}
-              aria-haspopup="true"
-              onClick={handleProfileMenuOpen}
-              color="inherit"
-            >
-              <AccountCircle />
-            </IconButton>
-          </Box>
-          <Box sx={{ display: { xs: "flex", md: "none" } }}>
-            <IconButton
-              size="large"
-              aria-label="show more"
-              aria-controls={mobileMenuId}
-              aria-haspopup="true"
-              onClick={handleMobileMenuOpen}
-              color="inherit"
-            >
-              <MoreIcon />
-            </IconButton>
-          </Box>
-        </Toolbar>
-      </AppBar>
-      {renderMobileMenu}
-      {renderMenu}
-    </ThemeProvider>
+              <Box>
+                <Typography
+                  variant="h7"
+                  noWrap
+                  component="div"
+                  sx={{ mr: 2, display: { md: "flex" } }}
+                  className="lmj-banner"
+                >
+                  <h3>
+                    <img
+                      src={leaf}
+                      alt="La Maison Jungle icon"
+                      className="lmj-banner-logo"
+                    ></img>
+                    La Maison Jungle
+                  </h3>
+                </Typography>
+              </Box>
+              <Search>
+                <SearchIconWrapper>
+                  <SearchIcon />
+                </SearchIconWrapper>
+                <StyledInputBase
+                  placeholder="Search…"
+                  inputProps={{ "aria-label": "search" }}
+                />
+              </Search>
+              <Box sx={{ flexGrow: 1 }}>
+                <Typography
+                  variant="h6"
+                  noWrap
+                  component="div"
+                  sx={{ display: { xs: "none", sm: "block" } }}
+                >
+                  {dateNow}
+                  {` ${cartOpened}`}
+                </Typography>
+              </Box>
+              <Box sx={{ display: { xs: "none", md: "flex" } }}>
+                <IconButton
+                  size="large"
+                  aria-label="show 4 new mails"
+                  color="inherit"
+                >
+                  <Badge badgeContent={4} color="error">
+                    <MailIcon />
+                  </Badge>
+                </IconButton>
+                <IconButton
+                  size="large"
+                  aria-label="show 17 new notifications"
+                  color="inherit"
+                >
+                  <Badge badgeContent={17} color="error">
+                    <NotificationsIcon />
+                  </Badge>
+                </IconButton>
+                <IconButton
+                  size="large"
+                  edge="end"
+                  aria-label="account of current user"
+                  aria-controls={menuId}
+                  aria-haspopup="true"
+                  onClick={handleProfileMenuOpen}
+                  color="inherit"
+                >
+                  <AccountCircle />
+                </IconButton>
+              </Box>
+              <Box sx={{ display: { xs: "flex", md: "none" } }}>
+                <IconButton
+                  size="large"
+                  aria-label="show more"
+                  aria-controls={mobileMenuId}
+                  aria-haspopup="true"
+                  onClick={handleMobileMenuOpen}
+                  color="inherit"
+                >
+                  <MoreIcon />
+                </IconButton>
+              </Box>
+            </Toolbar>
+          </AppBar>
+          {renderMobileMenu}
+          {renderMenu}
+        </ThemeProvider>
+      </ElevationScroll>
+    </React.Fragment>
   );
 }

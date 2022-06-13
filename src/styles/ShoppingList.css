@@ -10,11 +10,24 @@
   height: 100%;
   width: 60%;
 }
+
+.sl-div-lmj-plant-list > * {
+  flex: 1 1 40%;
+  display: flex;
+  flex-flow: row wrap;
+  list-style-type: none;
+
+  justify-content: space-evenly;
+  height: 100%;
+  width: 60%;
+  margin-left: 20%;
+}
+
 .sl-lmj-plant-list > * {
   flex: 1 1 40%;
 }
+
 .sl-lmj-plant-item {
-  display: flex;
   flex-flow: column wrap;
   border: solid 2px black;
   border-radius: 10px;
