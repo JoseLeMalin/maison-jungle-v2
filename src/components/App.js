@@ -6,9 +6,10 @@ import Cart from "./Cart";
 import Footer from "./Footer";
 import QuestionForm from "./QuestionForm";
 import ShoppingList from "./ShoppingList";
+import User from "./User";
 import Box from "@mui/material/Box";
 import { styled } from "@mui/material/styles";
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 function App() {
   const savedCart = localStorage.getItem("cart");
@@ -23,7 +24,7 @@ function App() {
   const Main = styled("main", { shouldForwardProp: (prop) => prop !== "open" })(
     ({ theme, open }) => ({
       flexGrow: 1,
-      padding: theme.spacing(3),
+      //padding: theme.spacing(3),
       transition: theme.transitions.create("margin", {
         easing: theme.transitions.easing.sharp,
         duration: theme.transitions.duration.leavingScreen,
@@ -40,23 +41,12 @@ function App() {
   );
   // https://v5.reactrouter.com/web/guides/quick-start
   return (
-    <div>
+    <div className="App">
       <Router>
-        <Link to="/ShoppingList">ShoppingList</Link>
-
-        <Routes>
-          <Route path="/ShoppingList">
-            <ShoppingList cart={cart} setCart={setCart} />
-          </Route>
-        </Routes>
-      </Router>
-      <div className="App">
         <div classsName="App-header">
-          <Box sx={{ flexGrow: 1 }}>
-            <Banner cartOpened={cartOpened} setCartOpened={setCartOpened} />
-          </Box>
+          <Banner cartOpened={cartOpened} setCartOpened={setCartOpened} />
         </div>
-        <div className="app-body">
+        <div className="App-body">
           <div classsName="App-cart">
             <Cart
               cart={cart}
@@ -65,20 +55,15 @@ function App() {
               setCartOpened={setCartOpened}
             />
           </div>
-          <Main open={cartOpened}>
-            <button>
-              <Link to="/ShoppingList">ShoppingList</Link>
-            </button>
+          <Main className="App-content" open={cartOpened}>
             <Routes>
-              <Route path="/ShoppingList">
-                <ShoppingList cart={cart} setCart={setCart} />
-              </Route>
-              <Route path="/users">{/* <Users /> */}</Route>
+              <Route
+                path="/ShoppingList"
+                element={<ShoppingList cart={cart} setCart={setCart} />}
+              ></Route>
+              <Route path="/user" element={<User />}></Route>
               <Route path="/">{/* <Home /> */}</Route>
             </Routes>
-            <div classsName="App-content">
-              <Box sx={{ flexGrow: 1 }}></Box>
-            </div>
             <QuestionForm />
           </Main>
         </div>
@@ -92,7 +77,7 @@ function App() {
           </button>
           {footerDisplay && <Footer />}
         </div>
-      </div>
+      </Router>
     </div>
   );
 }

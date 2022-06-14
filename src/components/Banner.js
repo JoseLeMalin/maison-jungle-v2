@@ -22,8 +22,9 @@ import dayjs from "dayjs";
 import { green } from "@mui/material/colors";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import useScrollTrigger from "@mui/material/useScrollTrigger";
-import PropTypes from "prop-types";
 import CssBaseline from "@mui/material/CssBaseline";
+import { Link } from "react-router-dom";
+import { Button } from "@mui/material";
 //function Banner() {
 //  const title = "La maison jungle";
 //  return (
@@ -100,15 +101,16 @@ export default function Banner({ cartOpened, setCartOpened }, props) {
   const [anchorEl, setAnchorEl] = useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState(null);
   const dateUpdater = () => {
-    const date = dayjs().format("D MMMM YYYY - h:mm A").toString();
-    setTimeout(() => {
-      setDateNow(date);
-    }, 60000);
+    const date = dayjs()
+      .format("D MMMM YYYY - h:mm:ss A")
+      .toString();
+
+    setInterval(() => {
+      setDateNow(dateUpdater());
+    }, 1000);
     return date;
   };
-  console.log(JSON.stringify(props));
   const [dateNow, setDateNow] = useState(dateUpdater());
-  console.log(JSON.stringify(props));
   // dateUpdater();
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
@@ -147,8 +149,12 @@ export default function Banner({ cartOpened, setCartOpened }, props) {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-      <MenuItem onClick={handleMenuClose}>My account</MenuItem>
+      <Link to="/user">
+        <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
+      </Link>
+      <Link to="/ShoppingList">
+        <MenuItem onClick={handleMenuClose}>My account</MenuItem>
+      </Link>
     </Menu>
   );
 
@@ -205,7 +211,7 @@ export default function Banner({ cartOpened, setCartOpened }, props) {
   );
 
   return (
-    <React.Fragment>
+    <>
       <CssBaseline />
       <ElevationScroll {...props}>
         <ThemeProvider theme={darkTheme}>
@@ -312,6 +318,6 @@ export default function Banner({ cartOpened, setCartOpened }, props) {
           {renderMenu}
         </ThemeProvider>
       </ElevationScroll>
-    </React.Fragment>
+    </>
   );
 }

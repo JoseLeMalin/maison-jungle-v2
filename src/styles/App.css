@@ -1,12 +1,15 @@
 .App {
+  display: flex;
+  flex-flow: column wrap;
   text-align: center;
-  height: 100%;
-  width: 100%;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.App-body {
+  height: 80%;
+}
+.App-cart {
+  background-color: rgb(29, 143, 29);
+  height: "100vh";
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -17,9 +20,9 @@
 
 .App-header {
   min-height: 100vh;
-  height: 20%;
+
   display: flex;
-  flex-direction: column;
+  flex-flow: column wrap;
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
@@ -35,6 +38,9 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
+
+  padding-top: 5%;
+  /*margin-top: 20%;*/
 }
 .App-link {
   color: #61dafb;
@@ -51,12 +57,4 @@
 .lmj-layout-inner {
   display: flex;
   flex-direction: row;
-}
-
-.app-body {
-  height: 80%;
-}
-.App-cart {
-  background-color: rgb(29, 143, 29);
-  height: "100vh";
 }
