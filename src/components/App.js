@@ -41,13 +41,13 @@ function App() {
   );
   // https://v5.reactrouter.com/web/guides/quick-start
   return (
-    <div classname="App">
+    <div className="App">
       <Router>
-        <div classname="App-header">
+        <div className="App-header">
           <Banner cartOpened={cartOpened} setCartOpened={setCartOpened} />
         </div>
-        <div classname="App-body">
-          <div classname="App-cart">
+        <div className="App-body">
+          <div className="App-cart">
             <Cart
               cart={cart}
               setCart={setCart}
