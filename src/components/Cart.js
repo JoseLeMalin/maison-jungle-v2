@@ -113,8 +113,8 @@ function Cart({ cart, setCart, cartOpened, setCartOpened }) {
       <CssBaseline />
       <div className="app-cart">
         <DrawerHeader>
-          <h2 flex>Panier</h2>
-          <div className="app-cart-header" flex>
+          <h2>Panier</h2>
+          <div className="app-cart-header">
             <Button
               className="lmj-cart-toggle-button"
               type="button"

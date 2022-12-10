@@ -42,9 +42,7 @@ function ElevationScroll(props) {
     target: window ? window() : undefined,
   });
 
-  return React.cloneElement(children, {
-    elevation: trigger ? 10 : 0,
-  });
+  return React.cloneElement(children, {});
 }
 
 // export default Banner;
@@ -101,9 +99,7 @@ export default function Banner({ cartOpened, setCartOpened }, props) {
   const [anchorEl, setAnchorEl] = useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState(null);
   const dateUpdater = () => {
-    const date = dayjs()
-      .format("D MMMM YYYY - h:mm:ss A")
-      .toString();
+    const date = dayjs().format("D MMMM YYYY - h:mm:ss A").toString();
 
     setInterval(() => {
       setDateNow(dateUpdater());
@@ -215,7 +211,7 @@ export default function Banner({ cartOpened, setCartOpened }, props) {
       <CssBaseline />
       <ElevationScroll {...props}>
         <ThemeProvider theme={darkTheme}>
-          <AppBar position="fixed" backgroundColor={green}>
+          <AppBar position="fixed" backgroundcolor={green}>
             <Toolbar>
               <IconButton
                 size="large"

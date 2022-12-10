@@ -18,7 +18,7 @@ function Categories({
             defaultValue={categ}
             value={categ}
             size="small"
-            id="filled-hidden-label-small"
+            id={categ}
           />
         );
       })}
