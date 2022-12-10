@@ -42,7 +42,7 @@ function ShoppingList({ cart, setCart }) {
   };
   return (
     <div className="sl-content">
-      <div class="sl-filters">
+      <div className="sl-filters">
         <Categories
           categAvailable={categAvailable}
           setcategAvailable={setcategAvailable}

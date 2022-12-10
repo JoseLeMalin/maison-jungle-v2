@@ -8,8 +8,7 @@
   height: 80%;
 }
 .App-cart {
-  background-color: rgb(29, 143, 29);
-  height: "100vh";
+  background-color: pink;
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -19,21 +18,20 @@
 }
 
 .App-header {
-  min-height: 100vh;
-
+  /* min-height: 100vh; */
+  width: 100%;
   display: flex;
   flex-flow: column wrap;
-  align-items: center;
-  justify-content: center;
+  /*align-items: center;
+  justify-content: center;*/
   font-size: calc(10px + 2vmin);
-  color: white;
 }
 
 .App-content {
   display: flex;
   flex-direction: column;
   background-color: #14693a;
-  min-height: 100vh;
+  /*min-height: 100vh; */
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
@@ -42,9 +40,9 @@
   padding-top: 5%;
   /*margin-top: 20%;*/
 }
-.App-link {
+/*.App-link {
   color: #61dafb;
-}
+}*/
 
 @keyframes App-logo-spin {
   from {
