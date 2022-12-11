@@ -19,7 +19,6 @@ import MailIcon from "@mui/icons-material/Mail";
 import MoreIcon from "@mui/icons-material/MoreVert";
 import { useState } from "react";
 import dayjs from "dayjs";
-import { green, grey } from "@mui/material/colors";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import useScrollTrigger from "@mui/material/useScrollTrigger";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -155,64 +154,14 @@ export default function Banner({ cartOpened, setCartOpened }, props) {
   );
 
   const mobileMenuId = "primary-search-account-menu-mobile";
-  // const renderMobileMenu = (
-  //   <Menu
-  //     anchorEl={mobileMoreAnchorEl}
-  //     anchorOrigin={{
-  //       vertical: "top",
-  //       horizontal: "right",
-  //     }}
-  //     id={mobileMenuId}
-  //     keepMounted
-  //     transformOrigin={{
-  //       vertical: "top",
-  //       horizontal: "right",
-  //     }}
-  //     open={isMobileMenuOpen}
-  //     onClose={handleMobileMenuClose}
-  //   >
-  //     <MenuItem>
-  //       <IconButton size="large" aria-label="show 4 new mails" color="inherit">
-  //         <Badge badgeContent={4} color="error">
-  //           <MailIcon />
-  //         </Badge>
-  //       </IconButton>
-  //       <p>Messages</p>
-  //     </MenuItem>
-  //     <MenuItem>
-  //       <IconButton
-  //         size="large"
-  //         aria-label="show 17 new notifications"
-  //         color="inherit"
-  //       >
-  //         <Badge badgeContent={17} color="error">
-  //           <NotificationsIcon />
-  //         </Badge>
-  //       </IconButton>
-  //       <p>Notifications</p>
-  //     </MenuItem>
-  //     <MenuItem onClick={handleProfileMenuOpen}>
-  //       <IconButton
-  //         size="large"
-  //         aria-label="account of current user"
-  //         aria-controls="primary-search-account-menu"
-  //         aria-haspopup="true"
-  //         color="inherit"
-  //       >
-  //         <AccountCircle />
-  //       </IconButton>
-  //       <p>Profile</p>
-  //     </MenuItem>
-  //   </Menu>
-  // );
 
   return (
-    <Box sx={{ flexGrow: 1 }}>
+    <Box sx={{ display: "flex", flexGrow: 1 }}>
       <CssBaseline />
       <ElevationScroll {...props}>
         {/* <ThemeProvider theme={darkTheme}> */}
         <ThemeProvider theme={darkTheme}>
-          <AppBar position="static" sx={{ mr: 2 }}>
+          <AppBar position="static">
             <Toolbar>
               <IconButton
                 edge="start"
@@ -243,25 +192,29 @@ export default function Banner({ cartOpened, setCartOpened }, props) {
                   </h3>
                 </Typography>
               </Box>
-              <Search>
-                <SearchIconWrapper>
-                  <SearchIcon />
-                </SearchIconWrapper>
-                <StyledInputBase
-                  placeholder="Search…"
-                  inputProps={{ "aria-label": "search" }}
-                />
-              </Search>
-              <Box sx={{ flexGrow: 1 }}>
-                <Typography
-                  variant="h6"
+              <Box>
+                <Search>
+                  <SearchIconWrapper>
+                    <SearchIcon />
+                  </SearchIconWrapper>
+                  <StyledInputBase
+                    placeholder="Search…"
+                    inputProps={{ "aria-label": "search" }}
+                  />
+                </Search>
+              </Box>
+              <Box sx={{ flexGrow: 1 }} fontSize={15}>
+                <p>
+                  {dateNow}
+                  {` ${cartOpened}`}
+                </p>
+                {/* <Typography */}
+                {/*   variant="inherit"
                   noWrap
                   component="div"
                   sx={{ display: { xs: "none", sm: "block" } }}
-                >
-                  {dateNow}
-                  {` ${cartOpened}`}
-                </Typography>
+                > */}
+                {/*  </Typography> */}
               </Box>
               <Box sx={{ display: { xs: "none", md: "flex" } }}>
                 <IconButton
@@ -315,3 +268,54 @@ export default function Banner({ cartOpened, setCartOpened }, props) {
     </Box>
   );
 }
+
+// const renderMobileMenu = (
+//   <Menu
+//     anchorEl={mobileMoreAnchorEl}
+//     anchorOrigin={{
+//       vertical: "top",
+//       horizontal: "right",
+//     }}
+//     id={mobileMenuId}
+//     keepMounted
+//     transformOrigin={{
+//       vertical: "top",
+//       horizontal: "right",
+//     }}
+//     open={isMobileMenuOpen}
+//     onClose={handleMobileMenuClose}
+//   >
+//     <MenuItem>
+//       <IconButton size="large" aria-label="show 4 new mails" color="inherit">
+//         <Badge badgeContent={4} color="error">
+//           <MailIcon />
+//         </Badge>
+//       </IconButton>
+//       <p>Messages</p>
+//     </MenuItem>
+//     <MenuItem>
+//       <IconButton
+//         size="large"
+//         aria-label="show 17 new notifications"
+//         color="inherit"
+//       >
+//         <Badge badgeContent={17} color="error">
+//           <NotificationsIcon />
+//         </Badge>
+//       </IconButton>
+//       <p>Notifications</p>
+//     </MenuItem>
+//     <MenuItem onClick={handleProfileMenuOpen}>
+//       <IconButton
+//         size="large"
+//         aria-label="account of current user"
+//         aria-controls="primary-search-account-menu"
+//         aria-haspopup="true"
+//         color="inherit"
+//       >
+//         <AccountCircle />
+//       </IconButton>
+//       <p>Profile</p>
+//     </MenuItem>
+//   </Menu>
+// );

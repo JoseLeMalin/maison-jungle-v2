@@ -16,6 +16,7 @@ const Alert = forwardRef(function Alert(props, ref) {
  * @returns
  */
 function ShoppingList({ cart, setCart }) {
+  console.log(`cart ShoppingList: ${JSON.stringify(cart)}`);
   const listCateg = plantList.reduce(
     (acc, plant) =>
       acc.includes(plant.category) ? acc : acc.concat(plant.category),

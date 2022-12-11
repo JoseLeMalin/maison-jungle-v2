@@ -10,6 +10,7 @@ import User from "./User";
 import Box from "@mui/material/Box";
 import { styled } from "@mui/material/styles";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { Home } from "./Home";
 
 function App() {
   const savedCart = localStorage.getItem("cart");
@@ -39,22 +40,27 @@ function App() {
       }),
     })
   );
+
   // https://v5.reactrouter.com/web/guides/quick-start
   return (
-    <div className="App">
+    <Box
+      className="App"
+      sx={{ display: "flex" }}
+      border={10}
+      borderColor={"red"}
+    >
+      {/* <div> */}
       <Router>
-        <div className="App-header">
+        <Box className="App-header">
           <Banner cartOpened={cartOpened} setCartOpened={setCartOpened} />
-        </div>
-        <div className="App-body">
-          <div className="App-cart">
-            <Cart
-              cart={cart}
-              setCart={setCart}
-              cartOpened={cartOpened}
-              setCartOpened={setCartOpened}
-            />
-          </div>
+        </Box>
+        <Box className="App-body">
+          <Cart
+            cart={cart}
+            setCart={setCart}
+            cartOpened={cartOpened}
+            setCartOpened={setCartOpened}
+          />
           <Main className="App-content" open={cartOpened}>
             <Routes>
               <Route
@@ -62,12 +68,17 @@ function App() {
                 element={<ShoppingList cart={cart} setCart={setCart} />}
               ></Route>
               <Route path="/user" element={<User />}></Route>
-              <Route path="/">{/* <Home /> */}</Route>
+              <Route
+                path="/"
+                element={
+                  <Home cart={cart} setCart={setCart} cartOpened={cartOpened} />
+                }
+              ></Route>
             </Routes>
             <QuestionForm />
           </Main>
-        </div>
-        <div>
+        </Box>
+        <Box>
           <button
             type="button"
             value={footerDisplay}
@@ -76,9 +87,10 @@ function App() {
             {footerDisplay ? "Hide Footer" : "Display Footer"}
           </button>
           {footerDisplay && <Footer />}
-        </div>
+        </Box>
       </Router>
-    </div>
+      {/*     </div> */}
+    </Box>
   );
 }
 

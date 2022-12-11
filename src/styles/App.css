@@ -2,14 +2,16 @@
   display: flex;
   flex-flow: column wrap;
   text-align: center;
+  margin-left: 12.5%;
+  margin-right: 12.5%;
 }
 
 .App-body {
   height: 80%;
 }
-.App-cart {
-  background-color: pink;
-}
+/* .App-cart {
+  /*background-color: pink;*/
+/*}*/
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
