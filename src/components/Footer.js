@@ -1,34 +1,38 @@
 import { useEffect, useState } from "react";
 import "../styles/Footer.css";
 import * as React from "react";
-function Footer() {
+import Box from "@mui/material/Box";
+
+const Footer = () => {
   const [inputValue, setInputValue] = useState("");
 
-  function checkInputValue(eventText) {
+  const checkInputValue = (eventText) => {
     if (!eventText.includes("@")) {
       alert(`Your email address ${eventText} doesn't contain any '@'`);
     }
-  }
+  };
   useEffect(() => {
     console.log(`Déclenché seulement au 1er render`);
   }, []);
   return (
-    <footer className="lmj-footer">
-      <div className="lmj-footer-elem">
-        Pour les passionné·e·s de plantes 🌿🌱🌵
+    <React.Fragment>
+      <div>
+        <p>Pour les passionné·e·s de plantes 🌿🌱🌵</p>
       </div>
-      <div className="lmj-footer-elem">
-        Laissez-nous votre mail :
-        <textarea
-          name="customerEmail"
-          placeholder="email@email.com"
-          onBlur={(e) => checkInputValue(e.target.value)}
-          onChange={(e) => setInputValue(e.target.value)}
-          value={inputValue}
-        ></textarea>
+      <div>
+        <p>
+          Laissez-nous votre mail :
+          <textarea
+            name="customerEmail"
+            placeholder="email@email.com"
+            onBlur={(e) => checkInputValue(e.target.value)}
+            onChange={(e) => setInputValue(e.target.value)}
+            value={inputValue}
+          ></textarea>
+        </p>
       </div>
-    </footer>
+    </React.Fragment>
   );
-}
+};
 
 export default Footer;

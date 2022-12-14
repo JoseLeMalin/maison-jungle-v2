@@ -15,7 +15,7 @@ const Alert = forwardRef(function Alert(props, ref) {
  *
  * @returns
  */
-function ShoppingList({ cart, setCart }) {
+const ShoppingList = ({ cart, setCart }) => {
   console.log(`cart ShoppingList: ${JSON.stringify(cart)}`);
   const listCateg = plantList.reduce(
     (acc, plant) =>
@@ -34,6 +34,34 @@ function ShoppingList({ cart, setCart }) {
   } else {
     plantlistDisplay = plantList;
   }
+
+  const addPlantToCart = (name, price, id) => {
+    try {
+      const currentPlantAdded = cart.find((plant) => plant.name === name);
+      let sortedCart;
+      if (currentPlantAdded) {
+        const cartFilteredPlantAdded = cart.filter(
+          (plant) => plant.name !== name
+        );
+        sortedCart = [
+          ...cartFilteredPlantAdded,
+          {
+            name,
+            price,
+            id,
+            amount: currentPlantAdded.amount + 1,
+          },
+        ];
+      } else {
+        sortedCart = [...cart, { name, price, id, amount: 1 }];
+      }
+      sortedCart.sort((a, b) => a.name.localeCompare(b.name));
+      setCart(sortedCart);
+      handleClick();
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   const handleClick = () => {
     setOpenSnackBar(true);
@@ -96,37 +124,8 @@ function ShoppingList({ cart, setCart }) {
           This is a success message!
         </Alert>
       </Snackbar>
-      ;
     </div>
   );
-
-  function addPlantToCart(name, price, id) {
-    try {
-      const currentPlantAdded = cart.find((plant) => plant.name === name);
-      let sortedCart;
-      if (currentPlantAdded) {
-        const cartFilteredPlantAdded = cart.filter(
-          (plant) => plant.name !== name
-        );
-        sortedCart = [
-          ...cartFilteredPlantAdded,
-          {
-            name,
-            price,
-            id,
-            amount: currentPlantAdded.amount + 1,
-          },
-        ];
-      } else {
-        sortedCart = [...cart, { name, price, id, amount: 1 }];
-      }
-      sortedCart.sort((a, b) => a.name.localeCompare(b.name));
-      setCart(sortedCart);
-      handleClick();
-    } catch (error) {
-      console.log(error);
-    }
-  }
-}
+};
 
 export default ShoppingList;

@@ -2,13 +2,8 @@
   display: flex;
   flex-flow: column wrap;
   text-align: center;
-  margin-left: 12.5%;
-  margin-right: 12.5%;
 }
 
-.App-body {
-  height: 80%;
-}
 /* .App-cart {
   /*background-color: pink;*/
 /*}*/
@@ -30,7 +25,6 @@
 }
 
 .App-content {
-  display: flex;
   flex-direction: column;
   background-color: #14693a;
   /*min-height: 100vh; */
@@ -53,8 +47,4 @@
   to {
     transform: rotate(360deg);
   }
-}
-.lmj-layout-inner {
-  display: flex;
-  flex-direction: row;
 }

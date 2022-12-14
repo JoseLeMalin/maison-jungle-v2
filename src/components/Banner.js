@@ -4,6 +4,7 @@ import * as React from "react";
 import { styled, alpha } from "@mui/material/styles";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
+import Avatar from "@mui/material/Avatar";
 import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
@@ -13,7 +14,6 @@ import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
 import MenuIcon from "@mui/icons-material/Menu";
 import SearchIcon from "@mui/icons-material/Search";
-import AccountCircle from "@mui/icons-material/AccountCircle";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import MailIcon from "@mui/icons-material/Mail";
 import MoreIcon from "@mui/icons-material/MoreVert";
@@ -23,7 +23,7 @@ import { ThemeProvider, createTheme } from "@mui/material/styles";
 import useScrollTrigger from "@mui/material/useScrollTrigger";
 import CssBaseline from "@mui/material/CssBaseline";
 import { Link } from "react-router-dom";
-import { Button } from "@mui/material";
+import Allheroes from "../assets/All-heroes-in-one-picture.jpg";
 //function Banner() {
 //  const title = "La maison jungle";
 //  return (
@@ -244,7 +244,11 @@ export default function Banner({ cartOpened, setCartOpened }, props) {
                   onClick={handleProfileMenuOpen}
                   color="inherit"
                 >
-                  <AccountCircle />
+                  <Avatar
+                    alt="PP"
+                    src={Allheroes}
+                    sx={{ width: 50, height: 50 }}
+                  />
                 </IconButton>
               </Box>
               <Box sx={{ display: { xs: "flex", md: "none" } }}>

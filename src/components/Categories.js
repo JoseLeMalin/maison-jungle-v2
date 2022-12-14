@@ -1,38 +1,20 @@
 import * as React from "react";
 import TextField from "@mui/material/TextField";
 const ariaLabel = { "aria-label": "description" };
-function Categories({
+
+const Categories = ({
   categAvailable,
   setcategAvailable,
   categSelected,
   setCategSelected,
-}) {
-  return (
-    <div>
-      {displaySelect()}
-      {categSelected.map((categ) => {
-        return (
-          <TextField
-            disabled
-            inputProps={ariaLabel}
-            defaultValue={categ}
-            value={categ}
-            size="small"
-            id={categ}
-          />
-        );
-      })}
-    </div>
-  );
-
-  function displaySelect() {
+}) => {
+  const displaySelect = () => {
     if (categAvailable.length) {
       return (
         <select
           id="listCateg"
           name="listCategPlants"
           onChange={(e) => filterCategories(e.target.value)}
-          //value={categSelected}
           multiple={false}
           selected
         >
@@ -45,9 +27,9 @@ function Categories({
         </select>
       );
     }
-  }
+  };
 
-  function filterCategories(categSelect) {
+  const filterCategories = (categSelect) => {
     // on supprime de la liste déroulante et on met à jour la liste déroulante
     const listCategAvailableFiltered = categAvailable.filter(
       (categ) => categ !== categSelect
@@ -55,7 +37,24 @@ function Categories({
     setcategAvailable([...listCategAvailableFiltered]);
     // on rajoute la categSélectionnée dans la liste des categSelectionnées
     setCategSelected([...categSelected, categSelect]);
-  }
-}
+  };
+  return (
+    <div>
+      {displaySelect()}
+      {categSelected.map((categ) => {
+        return (
+          <TextField
+            disabled
+            key={categ}
+            inputProps={ariaLabel}
+            value={categ}
+            size="small"
+            id={categ}
+          />
+        );
+      })}
+    </div>
+  );
+};
 
 export default Categories;

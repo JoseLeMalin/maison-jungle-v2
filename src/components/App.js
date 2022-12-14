@@ -11,6 +11,8 @@ import Box from "@mui/material/Box";
 import { styled } from "@mui/material/styles";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { Home } from "./Home";
+import CssBaseline from "@mui/material/CssBaseline";
+import Container from "@mui/material/Container";
 
 function App() {
   const savedCart = localStorage.getItem("cart");
@@ -43,54 +45,71 @@ function App() {
 
   // https://v5.reactrouter.com/web/guides/quick-start
   return (
-    <Box
-      className="App"
-      sx={{ display: "flex" }}
-      border={10}
-      borderColor={"red"}
-    >
-      {/* <div> */}
-      <Router>
-        <Box className="App-header">
-          <Banner cartOpened={cartOpened} setCartOpened={setCartOpened} />
+    <React.Fragment>
+      <CssBaseline />
+      <Container
+        sx={{
+          display: { xs: "none", md: "flex" },
+        }}
+        maxWidth={"xl"}
+      >
+        <Box
+          className="App"
+          sx={{ display: "flex" }}
+          border={10}
+          borderColor={"red"}
+        >
+          {/* <div> */}
+          <Router>
+            <Box className="App-header">
+              <Banner cartOpened={cartOpened} setCartOpened={setCartOpened} />
+            </Box>
+            <Box border={10} borderColor={"pink"}>
+              <Cart
+                cart={cart}
+                setCart={setCart}
+                cartOpened={cartOpened}
+                setCartOpened={setCartOpened}
+              />
+              <Main
+                className="App-content"
+                open={cartOpened}
+                sx={{ display: "flex" }}
+              >
+                <Routes>
+                  <Route
+                    path="/ShoppingList"
+                    element={<ShoppingList cart={cart} setCart={setCart} />}
+                  ></Route>
+                  <Route path="/user" element={<User />}></Route>
+                  <Route
+                    path="/"
+                    element={
+                      <Home
+                        cart={cart}
+                        setCart={setCart}
+                        cartOpened={cartOpened}
+                      />
+                    }
+                  ></Route>
+                </Routes>
+                <QuestionForm sx={{ display: "flex" }} />
+              </Main>
+              <Box sx={{ display: "flex" }}>
+                <button
+                  type="button"
+                  value={footerDisplay}
+                  onClick={() => setDisplayFooter(!footerDisplay)}
+                >
+                  {footerDisplay ? "Hide Footer" : "Display Footer"}
+                </button>
+                {footerDisplay && <Footer />}
+              </Box>
+            </Box>
+          </Router>
         </Box>
-        <Box className="App-body">
-          <Cart
-            cart={cart}
-            setCart={setCart}
-            cartOpened={cartOpened}
-            setCartOpened={setCartOpened}
-          />
-          <Main className="App-content" open={cartOpened}>
-            <Routes>
-              <Route
-                path="/ShoppingList"
-                element={<ShoppingList cart={cart} setCart={setCart} />}
-              ></Route>
-              <Route path="/user" element={<User />}></Route>
-              <Route
-                path="/"
-                element={
-                  <Home cart={cart} setCart={setCart} cartOpened={cartOpened} />
-                }
-              ></Route>
-            </Routes>
-            <QuestionForm />
-          </Main>
-        </Box>
-        <Box>
-          <button
-            type="button"
-            value={footerDisplay}
-            onClick={() => setDisplayFooter(!footerDisplay)}
-          >
-            {footerDisplay ? "Hide Footer" : "Display Footer"}
-          </button>
-          {footerDisplay && <Footer />}
-        </Box>
-      </Router>
-      {/*     </div> */}
-    </Box>
+      </Container>
+    </React.Fragment>
   );
 }
 
