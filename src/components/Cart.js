@@ -6,7 +6,6 @@ import Drawer from "@mui/material/Drawer";
 import Divider from "@mui/material/Divider";
 import { styled } from "@mui/material/styles";
 import CloseIcon from "@mui/icons-material/Close";
-import CssBaseline from "@mui/material/CssBaseline";
 const Cart = ({ cart, setCart, cartOpened, setCartOpened }) => {
   //const [cart, setCart] = useState(0); // Update total price of cart
 
@@ -63,7 +62,6 @@ const Cart = ({ cart, setCart, cartOpened, setCartOpened }) => {
   }));
   return (
     <Box>
-      <CssBaseline />
       <Drawer
         anchor="left"
         open={cartOpened}

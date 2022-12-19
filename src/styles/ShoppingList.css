@@ -6,7 +6,6 @@
   flex-flow: row wrap;
   list-style-type: none;
   justify-content: space-evenly;
-  height: 100%;
 }
 
 .sl-div-lmj-plant-list > * {
@@ -16,7 +15,6 @@
   list-style-type: none;
 
   justify-content: space-evenly;
-  height: 100%;
 }
 
 .sl-lmj-plant-list > * {

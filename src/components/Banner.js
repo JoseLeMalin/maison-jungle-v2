@@ -21,9 +21,9 @@ import { useState } from "react";
 import dayjs from "dayjs";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import useScrollTrigger from "@mui/material/useScrollTrigger";
-import CssBaseline from "@mui/material/CssBaseline";
 import { Link } from "react-router-dom";
 import Allheroes from "../assets/All-heroes-in-one-picture.jpg";
+import { Button } from "@mui/material";
 //function Banner() {
 //  const title = "La maison jungle";
 //  return (
@@ -33,7 +33,7 @@ import Allheroes from "../assets/All-heroes-in-one-picture.jpg";
 //    </div>
 //  );
 //}
-function ElevationScroll(props) {
+const ElevationScroll = (props) => {
   const { children, window } = props;
   const trigger = useScrollTrigger({
     disableHysteresis: true,
@@ -85,7 +85,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
-const darkTheme = createTheme({
+const lightTheme = createTheme({
   palette: {
     mode: "light",
     primary: {
@@ -94,18 +94,37 @@ const darkTheme = createTheme({
   },
 });
 
-export default function Banner({ cartOpened, setCartOpened }, props) {
-  const [anchorEl, setAnchorEl] = useState(null);
-  const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState(null);
-  const dateUpdater = () => {
-    const date = dayjs().format("D MMMM YYYY - h:mm:ss A").toString();
+const darkTheme = createTheme({
+  palette: {
+    mode: "dark",
+    primary: {
+      main: "#a8f5e9",
+    },
+  },
+});
 
-    setInterval(() => {
-      setDateNow(dateUpdater());
-    }, 1000);
-    return date;
-  };
-  const [dateNow, setDateNow] = useState(dateUpdater());
+const Banner = ({ cartOpened, setCartOpened }, props) => {
+  const [anchorEl, setAnchorEl] = useState(null);
+  const [theme, setTheme] = useState(lightTheme);
+  const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState(null);
+
+  const switchTheme = () => {
+    if (!!theme) {
+      setTheme(null)
+      return
+    }
+    setTheme(true)
+    return
+  }
+
+  //const dateUpdater = () => {
+  //  const date = dayjs().format("D MMMM YYYY - h:mm:ss A").toString();
+  //  setInterval(() => {
+  //    setDateNow(dateUpdater());
+  //  }, 1000);
+  //  return date;
+  //};
+  //const [dateNow, setDateNow] = useState(dateUpdater());
   // dateUpdater();
   const isMenuOpen = Boolean(anchorEl);
   // const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
@@ -154,13 +173,11 @@ export default function Banner({ cartOpened, setCartOpened }, props) {
   );
 
   const mobileMenuId = "primary-search-account-menu-mobile";
-
   return (
     <Box sx={{ display: "flex", flexGrow: 1 }}>
-      <CssBaseline />
       <ElevationScroll {...props}>
         {/* <ThemeProvider theme={darkTheme}> */}
-        <ThemeProvider theme={darkTheme}>
+        <ThemeProvider theme={theme ? lightTheme : darkTheme}>
           <AppBar position="static">
             <Toolbar>
               <IconButton
@@ -205,17 +222,13 @@ export default function Banner({ cartOpened, setCartOpened }, props) {
               </Box>
               <Box sx={{ flexGrow: 1 }} fontSize={15}>
                 <p>
-                  {dateNow}
-                  {` ${cartOpened}`}
+                  {dayjs().format("DD//MM/YYYY - hh:mm").toString()}
+                  {` - ${cartOpened}`}
                 </p>
-                {/* <Typography */}
-                {/*   variant="inherit"
-                  noWrap
-                  component="div"
-                  sx={{ display: { xs: "none", sm: "block" } }}
-                > */}
-                {/*  </Typography> */}
               </Box>
+              {<Box sx={{ flexGrow: 1 }} fontSize={15}>
+                <Button color="secondary" onClick={() => switchTheme()} > {theme ? "Dark" : "Light"}</Button>
+              </Box>}
               <Box sx={{ display: { xs: "none", md: "flex" } }}>
                 <IconButton
                   size="large"
@@ -272,7 +285,7 @@ export default function Banner({ cartOpened, setCartOpened }, props) {
     </Box>
   );
 }
-
+export default Banner;
 // const renderMobileMenu = (
 //   <Menu
 //     anchorEl={mobileMoreAnchorEl}

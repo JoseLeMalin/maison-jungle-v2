@@ -24,16 +24,30 @@
   font-size: calc(10px + 2vmin);
 }
 
-.App-content {
+.App-container {
+  display: flex;
   flex-direction: column;
-  background-color: #14693a;
+  background-color: aqua;
   /*min-height: 100vh; */
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
 
-  padding-top: 5%;
+  /*padding-top: 5%;*/
+  /*margin-top: 20%;*/
+}
+
+.App-body {
+  flex-direction: column;
+   background-color: #14693a;
+  /*min-height: 100vh; */
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+
+  /*padding-top: 5%;*/
   /*margin-top: 20%;*/
 }
 /*.App-link {

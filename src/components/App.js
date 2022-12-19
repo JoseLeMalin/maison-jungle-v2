@@ -1,5 +1,6 @@
+
 import * as React from "react";
-import { useEffect, useState } from "react";
+import { useEffect, useState, Fragment } from "react";
 import "../styles/App.css";
 import Banner from "./Banner";
 import Cart from "./Cart";
@@ -14,7 +15,7 @@ import { Home } from "./Home";
 import CssBaseline from "@mui/material/CssBaseline";
 import Container from "@mui/material/Container";
 
-function App() {
+const App = () => {
   const savedCart = localStorage.getItem("cart");
   const [cart, setCart] = useState(savedCart ? JSON.parse(savedCart) : []);
   const [footerDisplay, setDisplayFooter] = useState(true);
@@ -45,13 +46,14 @@ function App() {
 
   // https://v5.reactrouter.com/web/guides/quick-start
   return (
-    <React.Fragment>
+    <Fragment>
       <CssBaseline />
       <Container
         sx={{
-          display: { xs: "none", md: "flex" },
+          display: { xs: "flex", md: "flex" },
         }}
         maxWidth={"xl"}
+        fixed
       >
         <Box
           className="App"
@@ -59,12 +61,11 @@ function App() {
           border={10}
           borderColor={"red"}
         >
-          {/* <div> */}
           <Router>
             <Box className="App-header">
               <Banner cartOpened={cartOpened} setCartOpened={setCartOpened} />
             </Box>
-            <Box border={10} borderColor={"pink"}>
+            <Box className="App-container" border={10} borderColor={"pink"}>
               <Cart
                 cart={cart}
                 setCart={setCart}
@@ -72,7 +73,7 @@ function App() {
                 setCartOpened={setCartOpened}
               />
               <Main
-                className="App-content"
+                className="App-body"
                 open={cartOpened}
                 sx={{ display: "flex" }}
               >
@@ -109,7 +110,7 @@ function App() {
           </Router>
         </Box>
       </Container>
-    </React.Fragment>
+    </Fragment>
   );
 }
 
