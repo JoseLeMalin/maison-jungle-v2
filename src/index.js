@@ -1,6 +1,6 @@
 import React from "react";
 import "../src/styles/index.css";
-import App from "./components/App";
+import { App } from "./components/App";
 import reportWebVitals from "./reportWebVitals";
 import { createRoot } from "react-dom/client";
 

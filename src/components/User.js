@@ -1,6 +1,5 @@
 import * as React from "react";
 import { Grid, Avatar, Box } from "@mui/material";
-
 import Paper from '@mui/material/Paper';
 import { styled } from '@mui/material/styles';
 import Allheroes from "../assets/All-heroes-in-one-picture.jpg";
@@ -9,24 +8,36 @@ const User = () => {
   const Item = styled(Paper)(({ theme }) => ({
     backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
     ...theme.typography.body2,
-    padding: theme.spacing("5"),
+    padding: theme.spacing(1),
     textAlign: 'left',
     color: theme.palette.text.secondary,
+    marginLeft: "10%",
+    marginRight: "10%",
+    marginBottom: "5%",
   }));
 
   return (
-    <Box >
+    <Box sx={{ flexGrow: 1 }}>
       <Grid
+        className="user-container"
+        gridAutoColumns={true}
         container
-        spacing={{ xs: 2, md: 3 }}
-        columns={{ xs: 4, sm: 8, md: 12 }}
+        columns={{ xs: 1, sm: 2 }}
+        paddingTop={{ xs: 5 }}
       >
-        <Grid key={"avatar"}>
+        <Grid key={"user-info"} xs={1}>
           <Item>
-            <Avatar alt="PP" src={Allheroes} sx={{ width: 14, height: 14 }} />
+            <Grid key={"avatar"} >
+              <Avatar alt="PP" src={Allheroes} sx={{ width: 164, height: 164 }} />
+            </Grid>
+            <Grid key={"name"}>
+              Pseudo: JoséLeMalin
+              Nom: LeMalin
+              Prénom: José
+            </Grid>
           </Item>
         </Grid>
-        <Grid key={"lorem 1"}>
+        <Grid key={"lorem 1"} xs={1}>
           <Item><p>
             Lorem Ipsum is simply dummy text of the printing and typesetting
             industry. Lorem Ipsum has been the industry's standard dummy text
@@ -40,7 +51,7 @@ const User = () => {
           </p></Item>
 
         </Grid>
-        <Grid key={"lorem 2"}>
+        <Grid key={"lorem 2"} xs={1}>
           <Item><p>
             Lorem Ipsum is simply dummy text of the printing and typesetting
             industry. Lorem Ipsum has been the industry's standard dummy text

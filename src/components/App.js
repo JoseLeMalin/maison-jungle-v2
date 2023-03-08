@@ -4,7 +4,7 @@ import { useEffect, useState, Fragment } from "react";
 import "../styles/App.css";
 import Banner from "./Banner";
 import Cart from "./Cart";
-import Footer from "./Footer";
+import { Footer } from './Footer'
 import QuestionForm from "./QuestionForm";
 import ShoppingList from "./ShoppingList";
 import User from "./User";
@@ -12,10 +12,17 @@ import Box from "@mui/material/Box";
 import { styled } from "@mui/material/styles";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { Home } from "./Home";
+import { GitHubStats } from "./GitHubStats";
 import CssBaseline from "@mui/material/CssBaseline";
 import Container from "@mui/material/Container";
+import {
+  QueryClient,
+  QueryClientProvider,
+} from '@tanstack/react-query'
+const queryClient = new QueryClient()
 
-const App = () => {
+
+export const App = () => {
   const savedCart = localStorage.getItem("cart");
   const [cart, setCart] = useState(savedCart ? JSON.parse(savedCart) : []);
   const [footerDisplay, setDisplayFooter] = useState(true);
@@ -46,7 +53,7 @@ const App = () => {
 
   // https://v5.reactrouter.com/web/guides/quick-start
   return (
-    <Fragment>
+    <>
       <CssBaseline />
       <Container
         sx={{
@@ -65,7 +72,8 @@ const App = () => {
             <Box className="App-header">
               <Banner cartOpened={cartOpened} setCartOpened={setCartOpened} />
             </Box>
-            <Box className="App-container" border={10} borderColor={"pink"}>
+            <Box className="App-container" border={10} borderColor={"pink"}
+              sx={{ display: "flex" }}>
               <Cart
                 cart={cart}
                 setCart={setCart}
@@ -93,9 +101,19 @@ const App = () => {
                       />
                     }
                   ></Route>
+                  <Route
+                    path="/reactQuery"
+                    element={
+                      <QueryClientProvider client={queryClient}>
+                        <GitHubStats />
+                      </QueryClientProvider>
+                    }
+                  ></Route>
                 </Routes>
-                <QuestionForm sx={{ display: "flex" }} />
               </Main>
+              <Box sx={{ display: "flex" }}>
+                <QuestionForm sx={{ display: "flex" }} />
+              </Box>
               <Box sx={{ display: "flex" }}>
                 <button
                   type="button"
@@ -110,8 +128,7 @@ const App = () => {
           </Router>
         </Box>
       </Container>
-    </Fragment>
+    </>
   );
 }
 
-export default App;

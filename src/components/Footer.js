@@ -1,9 +1,8 @@
 import { useEffect, useState } from "react";
 import "../styles/Footer.css";
 import * as React from "react";
-import Box from "@mui/material/Box";
 
-const Footer = () => {
+export const Footer = () => {
   const [inputValue, setInputValue] = useState("");
 
   const checkInputValue = (eventText) => {
@@ -13,7 +12,7 @@ const Footer = () => {
   };
   useEffect(() => {
     console.log(`Déclenché seulement au 1er render`);
-  }, []);
+  }, [inputValue]);
   return (
     <React.Fragment>
       <div>
@@ -34,5 +33,3 @@ const Footer = () => {
     </React.Fragment>
   );
 };
-
-export default Footer;
